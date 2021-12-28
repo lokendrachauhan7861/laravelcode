@@ -20,18 +20,7 @@ class RedirectIfAuthenticated
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
-      public function __construct(Request $request)
-    {
-        $getrole = $request->input('role');
-        session()->put('validlgoinui', $getrole);
-        $validuirole = session()->get('validlgoinui');
-        $getrole = $request->input('email');
-        $gettablerole = User::where('email', $getrole)->first();
-        $tablerole = isset($gettablerole['role']) ? $gettablerole['role'] : '0';
-        session()->put('tablerole', $tablerole);
-       
-
-    }
+  
     public function handle(Request $request, Closure $next, ...$guards)
     {
          if (Auth::guard($guards)->check()) {
@@ -44,9 +33,9 @@ class RedirectIfAuthenticated
 
       
 
-    switch ($role) {
+     switch ($role) {
 
-      case '1':
+        case '1':
 
          return redirect('admin/dashboard');
 
@@ -54,7 +43,7 @@ class RedirectIfAuthenticated
 
          case '2':
 
-         return redirect('seller/dashboard');
+         return redirect('user/dashboard');
 
          break;
 

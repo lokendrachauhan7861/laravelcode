@@ -13,7 +13,7 @@
 <body class="bg-dark">
 
 
-    @yield('content1')
+    @yield('content')
 
 @include('partialbacked.footer')
 

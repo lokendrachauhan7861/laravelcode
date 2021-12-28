@@ -32,92 +32,36 @@ class LoginController extends Controller
      * @var string
      */
    // protected $redirectTo = RouteServiceProvider::HOME;
-    public function redirectTo() { 
+   
 
-  $checkui = session()->get('validlgoinui');
-
-  $tablerole = session()->get('tablerole');
-
-  if($checkui != $tablerole || $tablerole == '0')
-
-  {
-
-    if($checkui == '1')
-
+     protected function authenticated()
     {
+        if( Auth::user()->status == 0) {
+              
+              Auth::logout();
+              Auth::guard('web')->logout();
+              Session::flush();
 
-      Auth::logout();
-
-      Auth::guard('web')->logout();
-
-      Session::flush();
-
-      Session::forget('role');
-
-      return ('/admin/login/UnAuthorized'); 
-    
-
+            return redirect('/login')->with('success', 'Your account is inactive');
+         }
+           else {
+        
+                    $role = Auth::user()->role;
+                    switch($role) {
+                     case '1':
+                     return redirect('/admin/dashboard');
+                    break;
+                     case '2':
+                     return redirect('/user/dashboard');
+                    break;
+                     default:
+                     return redirect('/login');
+                    break;
+                      }
+             }
     }
-
-    else
-
-    {
-
-      Auth::logout();
-
-      Auth::guard('web')->logout();
-
-      Session::flush();
-
-      Session::forget('role');
-
-      return ('/login?='.'UnAuthorized');
-
-
-
-      
-
-    }
-
-  }
-
-  else
-
-  {
-
-    $role = Auth::user()->role; 
-
-     switch ($role) {
-
-    case '1':
-
-       return 'admin/dashboard';
-
-      break;
-
-    case '2':
-
-      return 'seller/dashboard';
-
-      break;
-
-     
-
-    default:
-
-      return '/home'; 
-
-    break;
-
-  }
-
-  }
-
-     
 
  
-
-}
 
     /**
      * Create a new controller instance.

@@ -12,7 +12,7 @@
                 <div class="login-form">
                     <p>{{ __('Login') }}</p>
 
-                <p style="text-align:center;color:red;">{{ Request::segment(3) }}</p>
+               
                     <form method="POST" action="{{ route('login') }}">
                          @csrf
                          <input type="hidden" name="role" value="1">
@@ -25,14 +25,11 @@
                                     </span>
                                 @enderror
                         </div>
-                            <div class="form-group">
+                        <div class="form-group">
                                 <label>Password</label>
                                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                         </div>
-                                <div class="checkbox">
-                                  
-
-                                </div>
+                               
                                 <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
                                 
                     </form>

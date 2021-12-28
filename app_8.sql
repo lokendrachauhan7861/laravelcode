@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 27, 2021 at 03:08 PM
+-- Generation Time: Dec 28, 2021 at 10:46 PM
 -- Server version: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.4.25
 
@@ -73,6 +73,30 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL,
+  `permission_role_id` varchar(100) DEFAULT NULL,
+  `menu_permission` varchar(400) DEFAULT NULL,
+  `status` varchar(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `permission_role_id`, `menu_permission`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(11, '1', 'userManagement,allUser,addUser,editUser,deleteUser', NULL, NULL, '2021-09-13 09:40:09', NULL),
+(16, '2', 'userManagement,allUser', NULL, '2021-09-13 06:06:22', '2021-09-13 07:33:27', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `personal_access_tokens`
 --
 
@@ -91,17 +115,40 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `roleName` varchar(100) DEFAULT NULL,
+  `status` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `roleName`, `status`) VALUES
+(1, 'admin', '1'),
+(2, 'user', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
   `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pic` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -111,11 +158,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Lokendra', 'lokendra@gmail.com', NULL, '$2y$10$sBrRFuHNDxv8c8fA0DyL/.On6ijo3SaARxE1xeJ0KSmVMPaDE1a2y', 1, NULL, NULL, '2021-12-25 02:30:16', '2021-12-25 02:30:16'),
-(2, 'Shivam', 'shivam@gmail.com', NULL, '$2y$10$sBrRFuHNDxv8c8fA0DyL/.On6ijo3SaARxE1xeJ0KSmVMPaDE1a2y', 2, NULL, NULL, NULL, NULL),
-(3, 'ppp', 'pppp@gmail.com', NULL, '$2y$10$K7aVPonToyhRXnTvCFBEt./r.d04ycP4f9PYkNpasPvfpnvhq1mxG', NULL, NULL, NULL, '2021-12-26 07:13:33', '2021-12-26 07:13:33'),
-(4, 'kkkkk', 'kkkk@gmail.com', NULL, '$2y$10$97ywpJ1Ry9kVCEWoAoUYreB6oTmcMB5MMCz.O5whCvsc2ArMrkE96', 4, '8810405336', NULL, '2021-12-26 07:14:48', '2021-12-26 07:14:48');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `phone`, `designation`, `pic`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(6, 'lokendra', NULL, NULL, '$2y$10$K7aVPonToyhRXnTvCFBEt./r.d04ycP4f9PYkNpasPvfpnvhq1mxG', 2, NULL, NULL, NULL, 1, NULL, NULL, '2021-12-28 09:03:37'),
+(22, 'shivam', 'shivam@gmail.com', NULL, '$2y$10$fwrRbhpxikdrq3hueob9ZOwBAPIe5xB4XDkPTV0VGwPXifsd/OHa6', 2, '8810405336', NULL, NULL, 0, NULL, '2021-12-28 00:05:54', '2021-12-28 04:03:09'),
+(23, 'admin', 'admin@gmail.com', NULL, '$2y$10$K7aVPonToyhRXnTvCFBEt./r.d04ycP4f9PYkNpasPvfpnvhq1mxG', 1, '8810405336', NULL, NULL, 1, NULL, NULL, '2021-12-28 04:03:28'),
+(30, 'lokendra', 'lokendra@gmail.com', NULL, '$2y$10$Xt2Um3UF0y6Ef4M7Atc53eoJzTKmflD7ynMNW6gSmXrqs8t5FUnPO', 2, '8810405336', 'php developer', '20211228161931.jpg', 1, NULL, '2021-12-28 01:13:04', '2021-12-28 10:49:31');
 
 --
 -- Indexes for dumped tables
@@ -141,12 +188,24 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -170,15 +229,25 @@ ALTER TABLE `failed_jobs`
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

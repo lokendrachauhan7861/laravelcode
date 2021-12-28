@@ -7,10 +7,15 @@
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
                  
-                   @if (isset($message))
-           <p align="center" style="color: red;"><strong>{{$message}}</strong></p>
+                   @if (isset($error))
+           <p align="center" style="color: red;"><strong>{{$error}}</strong></p>
                        @endif
                 <div class="card-body">
+                        @if (Session::has('success'))
+                       <div class="alert alert-danger" role="alert">
+                       {{ Session::get('success') }}
+                       </div>
+                       @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                          <input type="hidden" name="role" value="2">
