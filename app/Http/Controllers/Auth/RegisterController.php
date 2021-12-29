@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'designation' => $data['designation'],
             'role' => '2',
             'status' => '1',
             'password' => Hash::make($data['password']),
@@ -87,7 +88,7 @@ class RegisterController extends Controller
 
      \Auth::logout();
 
-     return redirect('/register')->with('success', 'Success! Register Create Successfully.');
+     return redirect('/register')->with('success', 'Success! User Registered Successfully.');
     }
 
 }

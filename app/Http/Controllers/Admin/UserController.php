@@ -77,11 +77,13 @@ class UserController extends Controller
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
+        $designation = $request->input('designation');
         $status = $request->input('status');
         $update = User::find($id);
         $update->name = $name;
         $update->email = $email;
         $update->phone = $phone;
+        $update->designation = $designation;
         $update->status = $status;
         $update->save();
         return redirect()->route('allUser')->with('success', 'User Updated Successfully.');

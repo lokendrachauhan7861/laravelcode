@@ -54,6 +54,17 @@
                     </div>
                 </div>
 
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Designation</label><span style="color:red">*</span></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="designation" value="{{$editUser[0]['designation']}}" placeholder="Designation" class="form-control">
+                    @if($errors->has('designation')) 
+                    <p class="req">
+                    {{ $errors->first('designation') }} 
+                    </p>
+                    @endif
+                    </div>
+                </div>
+
                  <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Status</label><span style="color:red">*</span></div>
                     <div class="col col-md-9">

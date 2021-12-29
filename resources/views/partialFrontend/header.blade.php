@@ -28,7 +28,14 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
 		
 			<ul class="nav navbar-nav navbar-right">
-				<li style="margin-top:12px;"><img src="{{ url('uploads/'.$getUser[0]['pic']) }}" class="rounded-circle" alt="Cinque Terre" width="40" height="30"></li>
+				<li style="margin-top:12px;">
+					
+					 @if($getUser[0]['pic'])
+					<img src="{{ url('/uploads/'. $getUser[0]['pic']) }}" class="rounded-circle" alt="Cinque Terre" width="40" height="30">
+					@else
+					<img src="{{ url('/uploads/default-img/default.png') }}" class="rounded-circle" alt="Cinque Terre" width="40" height="30">
+					@endif
+				</li>
 				<li><a href="http://www.pingpong-labs.com" target="_blank">{{ $getUser[0]['name'] }}</a></li>
 				
 				</ul>

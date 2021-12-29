@@ -42,7 +42,7 @@ class LoginController extends Controller
               Auth::guard('web')->logout();
               Session::flush();
 
-            return redirect('/login')->with('success', 'Your account is inactive');
+            return redirect('/login')->with('success', 'Sorry ! Your Account is InActive. Please Verify Your Email ID.');
          }
            else {
         

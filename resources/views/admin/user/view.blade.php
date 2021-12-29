@@ -31,6 +31,7 @@
                                         <th>User Name</th>
                                         <th>User Email</th>
                                         <th>Phone No</th>
+                                        <th>Designation</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -41,6 +42,7 @@
                                         <td>{{ $user['name'] }}</td>
                                         <td>{{ $user['email'] }}</td>
                                         <td>{{ $user['phone'] }}</td>
+                                        <td>{{ $user['designation'] }}</td>
                                         @if($user['status'] == '1')
                                         <td style="color:green;">Active</td>
                                          @else

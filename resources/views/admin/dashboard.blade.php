@@ -30,7 +30,9 @@
                        <!--  <h4 class="mb-0">
                             <span class="count">10</span>
                         </h4> -->
-                        <p class="text-light">User</p>
+                        <span><p class="text-light">Total Registered User</p>
+                        <p style="font-size:24px;font-weight:600;color:mediumblue;">{{ $totalUser}}</p></span>
+                        
 
                         <div class="chart-wrapper px-0" style="height:70px;" height="70">
                             
