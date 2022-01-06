@@ -50,7 +50,7 @@ class RedirectIfAuthenticated
 
       default:
 
-         return redirect('home'); 
+         return redirect('login'); 
 
          break;
 

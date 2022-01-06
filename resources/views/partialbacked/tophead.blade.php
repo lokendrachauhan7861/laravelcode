@@ -21,4 +21,5 @@
     <link rel="stylesheet" href="{{ url('backed/assets/css/style.css') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+     <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
   

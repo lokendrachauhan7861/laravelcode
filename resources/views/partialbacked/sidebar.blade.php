@@ -27,6 +27,34 @@
                         </ul>
                     </li>
                    @endcan
+
+                    @can("isAllowed", collect(['testimonial']))  
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Testimonial</a>
+                        <ul class="sub-menu children dropdown-menu">
+                             @can("isAllowed", collect(['addTestimonial']))
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('addTestimonial') }}">Add Testimonial</a></li>
+                             @endcan
+                              @can("isAllowed", collect(['allTestimonial']))
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('allTestimonial') }}">All Testimonial</a></li>
+                             @endcan
+                        </ul>
+                    </li>
+                   @endcan
+
+                     @can("isAllowed", collect(['pageManagement']))  
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Page Management</a>
+                        <ul class="sub-menu children dropdown-menu">
+                             @can("isAllowed", collect(['addPage']))
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('addPage') }}">Add Page</a></li>
+                             @endcan
+                              @can("isAllowed", collect(['allPage']))
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('allPage') }}">All Page</a></li>
+                             @endcan
+                        </ul>
+                    </li>
+                   @endcan
    
                 </ul>
             </div><!-- /.navbar-collapse -->

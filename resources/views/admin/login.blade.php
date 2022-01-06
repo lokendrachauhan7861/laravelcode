@@ -9,6 +9,14 @@
                         <img class="align-content" src="images/logo.png" alt="">
                     </a>
                 </div>
+                <div style="text-align:center;background-color:bisque;color:red;">
+                  
+                 @if($errors->any())
+                    @foreach($errors->all() as $error)
+                     <p style="margin-top:16px;">{{ $error }}</p>
+                   @endforeach 
+                @endif
+                </div>
                 <div class="login-form">
                     <p>{{ __('Login') }}</p>
 
@@ -19,11 +27,7 @@
                         <div class="form-group">
                             <label>Email address</label>
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Email">
-                               @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                             
                         </div>
                         <div class="form-group">
                                 <label>Password</label>

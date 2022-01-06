@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Mail;
 
 
 class UserDashboardController extends Controller
@@ -30,6 +31,7 @@ class UserDashboardController extends Controller
     	Session::forget('role');
         return redirect('login');
     }
+
 
 
 }

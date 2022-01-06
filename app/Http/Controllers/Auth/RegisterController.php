@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Events\UserEmailVerify;
+use App\Listeners\SendUserEmailVerify;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -72,7 +75,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'designation' => $data['designation'],
             'role' => '2',
-            'status' => '1',
+            'status' => '0',
             'password' => Hash::make($data['password']),
         ]);
         
@@ -85,10 +88,23 @@ class RegisterController extends Controller
      $this->validator($request->all())->validate();
 
      event(new Registered($user = $this->create($request->all())));
-
+     
      \Auth::logout();
 
-     return redirect('/register')->with('success', 'Success! User Registered Successfully.');
+      event(new UserEmailVerify($request->all()));
+
+     return redirect('/register')->with('success', 'Success! User Registered Successfully. Please Verify Your EmailID From Mail.');
+    }
+
+    public function verifyUser(Request $request, $email)
+    {
+        
+        DB::table('users')
+                ->where('email', $email)
+                ->update(['status' => 1]);
+        return redirect('/login')->with('success', 'Success! Your Email Id is Verified Now. Please Login');
+    
+
     }
 
 }

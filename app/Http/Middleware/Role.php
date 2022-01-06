@@ -20,7 +20,7 @@ class Role {
 
     if (!Auth::check()) // This isnt necessary, it should be part of your 'auth' middleware
 
-      return redirect('/home');
+      return redirect('/login');
 
 
 
@@ -32,7 +32,7 @@ class Role {
 
 
 
-    return redirect('/home');
+    return redirect('/login');
 
   }
 
