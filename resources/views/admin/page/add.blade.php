@@ -13,7 +13,7 @@
 
                                                   
         <div class="card-header">
-            <strong>Add Page</strong> 
+            <strong>{{ __('messages.add page') }}</strong> 
         </div>
 
          <form  method="post" action="{{ route('storePage') }}" enctype="multipart/form-data" class="form-horizontal">                                     
