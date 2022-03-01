@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Exports\ExportUser;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -100,5 +102,10 @@ class UserController extends Controller
     {
       $delete = User::where('id',$id)->delete();
       return redirect()->route('allUser')->with('delete', 'User Deleted Successfully.');
+    }
+
+
+       public function exportUsers(Request $request){
+        return Excel::download(new ExportUser, 'users.xlsx');
     }
 }

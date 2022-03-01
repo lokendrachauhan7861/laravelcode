@@ -10,6 +10,8 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="{{ route('userDashboard') }}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 					<li><a href="{{ route('profile') }}"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
+					<li><a href="{{ route('products.list') }}"><span class="glyphicon glyphicon-user"></span> Shop Product</a></li>
+					<li><a href="{{ url('user/fullcalender') }}"><span class="glyphicon glyphicon-user"></span> Book Calender</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Change Password</a></li>
 					<li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-cloud"></span> Logout</a></li>
 

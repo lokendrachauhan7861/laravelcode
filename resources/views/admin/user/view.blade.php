@@ -25,7 +25,9 @@
                         </div>
                        
                         <div class="card-body">
+                            <a class="btn btn-success" href="{{ route('export-users') }}">Export Users</a>
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+
                                 <thead>
                                     <tr>
                                         <th>User Name</th>
