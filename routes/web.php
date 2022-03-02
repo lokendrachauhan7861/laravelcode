@@ -59,7 +59,9 @@ Route::get('page/edit/{id}', [App\Http\Controllers\Admin\PageController::class, 
 Route::post('page/update/{id?}', [App\Http\Controllers\Admin\PageController::class, 'update'])->name('page/update');
 
 
-Route::get('/export-users',[App\Http\Controllers\Admin\UserController::class,'exportUsers'])->name('export-users'); // export csv
+Route::get('/export-excel-users',[App\Http\Controllers\Admin\UserController::class,'exportExcelUsers'])->name('export-excel-users'); // export excel
+Route::get('/export-csv-users',[App\Http\Controllers\Admin\UserController::class,'exportCsvUsers'])->name('export-csv-users'); // export csv
+Route::get('generate-pdf', [App\Http\Controllers\Admin\UserController::class, 'generatePDF'])->name('export-pdf'); // generate pdf 
  
 
 	});

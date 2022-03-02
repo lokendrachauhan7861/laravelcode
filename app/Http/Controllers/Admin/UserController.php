@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Exports\ExportUser;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\WithHeadings;
+use PDF;
 
 class UserController extends Controller
 {
@@ -105,7 +107,26 @@ class UserController extends Controller
     }
 
 
-       public function exportUsers(Request $request){
+       public function exportExcelUsers(Request $request){
         return Excel::download(new ExportUser, 'users.xlsx');
+    }
+
+    public function exportCsvUsers()
+    {
+      return Excel::download(new ExportUser, 'users.csv');
+    }
+
+        public function generatePDF()
+
+    {
+
+        
+
+          $allUser = User::all();
+         // return view('admin/user/myPDF', compact('allUser'));
+
+        $pdf = PDF::loadView('admin/user/userPDF', compact('allUser'));
+        return $pdf->download('user.pdf');
+
     }
 }

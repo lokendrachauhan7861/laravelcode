@@ -25,7 +25,9 @@
                         </div>
                        
                         <div class="card-body">
-                            <a class="btn btn-success" href="{{ route('export-users') }}">Export Users</a>
+                            <a class="btn btn-success" href="{{ route('export-excel-users') }}">Export Excel</a>
+                            <a class="btn btn-success" href="{{ route('export-csv-users') }}">Export CSV</a>
+                            <a class="btn btn-success" href="{{ route('export-pdf') }}">Export PDF</a>
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
 
                                 <thead>
