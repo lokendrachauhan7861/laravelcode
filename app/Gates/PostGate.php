@@ -18,8 +18,7 @@ class PostGate {
       $join->on('users.role', '=', 'permissions.permission_role_id');
     })
     ->where('permissions.permission_role_id', $user->role)->first();
-        //echo "<pre>";
-       // print_r($c);die;
+        //dd($c->toArray());
         $menu_permission = $c['menu_permission'];
         if(!empty($menu_permission))
         {
@@ -34,6 +33,7 @@ class PostGate {
         //$checkmenupermission = (!empty($brealrole)) ? $brealrole : '';
       // dd($checkmenupermission);
          //$dbarr = array('roleManagement','websiteManagement','productManagement','packageManagement');
+       //print_r($allowed->all());
             return array_intersect($allowed->all(),$brealrole);
 
     }

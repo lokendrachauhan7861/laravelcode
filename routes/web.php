@@ -62,35 +62,38 @@ Route::post('page/update/{id?}', [App\Http\Controllers\Admin\PageController::cla
 Route::get('/export-excel-users',[App\Http\Controllers\Admin\UserController::class,'exportExcelUsers'])->name('export-excel-users'); // export excel
 Route::get('/export-csv-users',[App\Http\Controllers\Admin\UserController::class,'exportCsvUsers'])->name('export-csv-users'); // export csv
 Route::get('generate-pdf', [App\Http\Controllers\Admin\UserController::class, 'generatePDF'])->name('export-pdf'); // generate pdf 
- 
+
+
+Route::get('/product/import',[App\Http\Controllers\Admin\ImportProductController::class,'productImport'])->name('productImport'); // import product Excel 
+Route::post('/importProduct',[App\Http\Controllers\Admin\ImportProductController::class,'importProduct'])->name('importProduct'); // import product Excel 
 
 	});
 
-Route::group(['middleware'=>['auth','role:2']], function() {
+Route::group(['prefix'=> 'user', 'middleware'=>['auth','role:2']], function() {
 
-Route::get('user/dashboard', [App\Http\Controllers\UserDashboardController::class, 'userDashboard'])->name('userDashboard');
-Route::get('user/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-Route::post('user/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('updateProfile');
+Route::get('dashboard', [App\Http\Controllers\UserDashboardController::class, 'userDashboard'])->name('userDashboard');
+Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::post('profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('updateProfile');
 
-Route::get('user/product', [App\Http\Controllers\ProductController::class, 'productList'])->name('products.list');
-Route::get('user/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
-Route::post('user/cart', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.store');
-Route::post('user/update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
-Route::post('user/remove', [App\Http\Controllers\CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('user/clear', [App\Http\Controllers\CartController::class, 'clearAllCart'])->name('cart.clear');
-
-
-Route::get('user/productFilter', [App\Http\Controllers\ProductController::class, 'product_ajax_filter'])->name('product_ajax_data_filter');
+Route::get('product', [App\Http\Controllers\ProductController::class, 'productList'])->name('products.list');
+Route::get('cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [App\Http\Controllers\CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [App\Http\Controllers\CartController::class, 'clearAllCart'])->name('cart.clear');
 
 
+Route::get('productFilter', [App\Http\Controllers\ProductController::class, 'product_ajax_filter'])->name('product_ajax_data_filter');
+Route::get('fullcalender', [App\Http\Controllers\FullCalenderController::class, 'index']);
+Route::post('fullcalenderAjax', [App\Http\Controllers\FullCalenderController::class, 'ajax']);
 
-Route::get('user/fullcalender', [App\Http\Controllers\FullCalenderController::class, 'index']);
-
-Route::post('user/fullcalenderAjax', [App\Http\Controllers\FullCalenderController::class, 'ajax']);
+Route::get('order', [App\Http\Controllers\OrderController::class, 'order'])->name('order');
+Route::get('getThirdPartyAPiINController', [App\Http\Controllers\OrderController::class, 'getThirdPartyAPiINController'])->name('getThirdPartyAPiINController');
 
 
 
 });
+
 
 Route::get('logout', [App\Http\Controllers\Admin\LoginController::class, 'logout']);
 Route::get('logout', [App\Http\Controllers\UserDashboardController::class, 'logout']);

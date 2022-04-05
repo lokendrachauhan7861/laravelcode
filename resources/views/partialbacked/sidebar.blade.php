@@ -55,6 +55,18 @@
                         </ul>
                     </li>
                    @endcan
+                    
+
+                     @can("isAllowed", collect(['productManagement'])) 
+                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Product Management</a>
+                        @can("isAllowed", collect(['productImport']))
+                        <ul class="sub-menu children dropdown-menu">
+                          <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('productImport') }}">Product Import</a></li>
+                        </ul>
+                        @endcan
+                    </li>
+                   @endcan
    
                 </ul>
             </div><!-- /.navbar-collapse -->
